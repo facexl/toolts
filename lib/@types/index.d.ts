@@ -1,2 +1,2 @@
-import uuid from './uuid';
-export { uuid };
+import * as helper from './helper';
+export { helper };

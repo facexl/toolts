@@ -1,3 +1,3 @@
-export default {
-    a:1
-}
+import { uuid } from './lib/index'
+
+uuid(1,2)
