@@ -1,5 +1,7 @@
 import { uuid } from './helper'
-
+import { local, session } from './storage'
 export {
-    uuid
+  uuid,
+  local,
+  session
 }
