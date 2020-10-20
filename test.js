@@ -1,3 +1,3 @@
-const { fuck } = require('./dist')
-
-fuck()
+export default {
+    a:1
+}

@@ -1,1 +1,2 @@
-export default function (): void;
+import uuid from './uuid';
+export { uuid };
