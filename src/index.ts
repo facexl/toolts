@@ -1,4 +1,7 @@
 import uuid from './uuid'
 export default {
-    uuid
+    uuid,
+    fuck(){
+        const a = 1
+    }
 }
