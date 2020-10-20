@@ -1,9 +1,14 @@
 const path = require('path');
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
-    entry:'./src/index.ts',
+    mode: 'development',
+    entry:{
+        'index':'./src/index.ts'
+    },
     output:{
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../','dist'),
         filename: '[name].js'
     },
     module: {
@@ -11,5 +16,8 @@ module.exports = {
           // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
           { test: /\.tsx?$/, loader: "ts-loader" }
         ]
-    }
+    },
+    plugins:[
+        new CleanWebpackPlugin()
+    ]
 }
