@@ -1,7 +1,6 @@
-import uuid from './uuid'
-export default {
-    uuid,
-    fuck(){
-        const a = 1
+export default function(){
+    const a  =1;
+    let v = (_:any) =>{
+
     }
 }
