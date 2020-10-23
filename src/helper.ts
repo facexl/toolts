@@ -11,10 +11,9 @@ export function loopTriggerAsync (fn:()=>{}, time:number, max:number, waitRes:Bo
   let count = 0
   let timer:number|undefined
   async function trigger () {
+    clearTimeout(timer)
     if (waitRes) {
-      if (await fn()) {
-        clearTimeout(timer)
-      } else {
+      if (!(await fn())) {
         if (max && count > max) {
           return
         }
@@ -24,10 +23,16 @@ export function loopTriggerAsync (fn:()=>{}, time:number, max:number, waitRes:Bo
         }, time)
       }
     } else {
-
+      fn()
+      timer = setTimeout(() => {
+        trigger()
+      }, time)
     }
   }
   trigger()
+  return () => {
+    clearTimeout(timer)
+  }
 }
 /**
  * 反复执行同步代码 fn
