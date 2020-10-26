@@ -1,3 +1,3 @@
-import { uuid } from './lib/index'
+const { loopTriggerAsync } = require('./src/index')
 
-uuid(1,2)
+loopTriggerAsync(() => { console.log(123) }, 1000, 10, false)

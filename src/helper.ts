@@ -7,17 +7,24 @@ export function uuid (count:number = 6, prefix:string = ''):string {
   const len = count > 6 ? count : 6
   return prefix + Math.random().toString(16).substr(2).slice(-(len - 2)) + (new Date()).getTime().toString(16).slice(9)
 }
+/**
+ * 反复执行异步代码 fn
+ * @param fn
+ * @param time
+ * @param max
+ * @param waitRes
+ */
 export function loopTriggerAsync (fn:()=>{}, time:number, max:number, waitRes:Boolean) {
   let count = 0
   let timer:number|undefined
   async function trigger () {
     clearTimeout(timer)
+    if (max && count >= max) {
+      return
+    }
+    count++
     if (waitRes) {
       if (!(await fn())) {
-        if (max && count > max) {
-          return
-        }
-        count++
         timer = setTimeout(() => {
           trigger()
         }, time)
@@ -45,11 +52,11 @@ export function loopTriggerSync (fn:()=>{}, time:number, max:number) {
   let timer:number|undefined
   function trigger () {
     clearTimeout(timer)
+    if (max && count >= max) {
+      return
+    }
+    count++
     if (!fn()) {
-      if (max && count > max) {
-        return
-      }
-      count++
       timer = setTimeout(() => {
         trigger()
       }, time)
